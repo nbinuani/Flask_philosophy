@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<body>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    {% extends "index.html" %}
+    {% block body %}
+    <div id = "rect_form">
+        <label id = "current_page" > {{ "Dernière proposition  : "+session.article }} </label>
+        <form id = "form_1" action="/move" method="post">
+
+            <br>
+            <br>
+            {% for element in session.content[0:] %}
+                <input class="button_1" type="radio" name="destination" value="{{element}}" id={{element}} checked/>
+                <label for={{element}}>{{element}}</label><br>
+            {% endfor %}
+            <br>
+            <input id="cheated" name="cheated" type="hidden" value="cheated">
+            <input id = "button_2" type="submit" value="Valider">
+        </form>
+    </div>
+
+    <div id = "rect_score">
+        <label id = "label_score" > Score : {{ session.score }} </label>
+    </div>
+    {% endblock %}
+</body>
+</html>

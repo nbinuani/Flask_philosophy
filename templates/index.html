@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <a href="/">
+    <img id="image_wiki" src="/static/Wikipedia_logo.png">
+    </a>
+    <p id="title_tp"> Tous les chemins mènent à la philosophie ... </p>
+    <img id="greats_philo" src="/static/greats_philo.gif">
+    <label id="help"> Tip : Vous pouvez recommencer une partie à tout moment en cliquant sur le logo de Wikipédia !</label>
+    {% block body %}
+    <!-- https://www.askpython.com/python-modules/flask/flask-flash-method -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <a href="/">
+            <p class="{{ category }}">
+              {{ message }}
+            </p>
+            </a>
+          {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action = "/new-game", method = "post">
+        <input id = "input_1" type="text" name="start" placeholder="ex: Essayer un mot pour commencer : Bonjour"><br>
+        <input id = "submit_1" type="submit" value="Valider">
+    </form>
+    {% endblock %}
+  </body>
+</html>
